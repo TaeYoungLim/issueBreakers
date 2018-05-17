@@ -1,0 +1,39 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+ 
+version = '1.0'
+ 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+ 
+compileJava.options.encoding = 'UTF-8'
+ 
+project.webAppDirName = '/src/main/WebContent' 
+ 
+eclipse {
+    wtp {
+        facet {
+            facet name: 'jst.web', version: '3.0'
+            facet name: 'jst.java', version: '1.8'
+        }
+    }
+    
+	classpath {
+	    //default settings for downloading sources and Javadoc:
+		downloadSources = true
+	    downloadJavadoc = false
+	}
+}
+ 
+ 
+repositories {
+    mavenCentral()
+}
+ 
+dependencies {
+ 
+    compile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile 'org.slf4j:slf4j-api:1.7.18'
+     
+}
