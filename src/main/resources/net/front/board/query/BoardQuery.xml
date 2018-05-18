@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query>
+	<select>
+		select 
+			member_id memberId
+			,member_type memberType
+			,member_email memberEmail
+			,member_password memberPassword
+			,member_nick memberNick
+			,member_date memberDate
+		from 
+			member
+	</select>
+	<selectOne>
+		select 
+			member_id memberId
+			,member_type memberType
+			,member_email memberEmail
+			,member_password memberPassword
+			,member_nick memberNick
+			,member_date memberDate
+		from 
+			member
+	</selectOne>
+</query>
