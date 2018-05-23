@@ -76,9 +76,10 @@ public class CommonDao {
 			
 			if(matcher.find()) { 
 				tempSql = matcher.replaceAll("?");
-			} else {
-				return;
 			}
+			
+			// xml은 '<', '>' 문자를 태그로 인식 
+			tempSql.replaceAll("&lt;", "<").replaceAll("&gt;", ">");
 			
 			// set preparedStatement
 			try {
@@ -110,7 +111,32 @@ public class CommonDao {
 					}
 				} catch (NoSuchFieldException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Field field;
+					try {
+						field = clazz.getSuperclass().getDeclaredField(parameterName);
+						field.setAccessible(true);
+						
+						if(field.getType().toString().equals("int")) {
+							preparedStatement.setInt(i++, field.getInt(vo));
+						} else {
+							preparedStatement.setString(i++, (String) field.get(vo));
+						}
+					} catch (NoSuchFieldException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SecurityException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IllegalArgumentException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IllegalAccessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} catch (SecurityException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

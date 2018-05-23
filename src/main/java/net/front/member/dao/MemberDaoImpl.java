@@ -28,4 +28,11 @@ public class MemberDaoImpl implements MemberDao {
 		String query = QueryMakerListener._QueryMap.get("/net/front/member/query/MemberQuery.xml/findEmail");
 		return new CommonDao(query, memberVo).getResult(MemberVo.class.getName());
 	}
+	
+	@Override
+	public ArrayList<Object> findPassword(MemberVo memberVo) {
+		// TODO Auto-generated method stub
+		String query = QueryMakerListener._QueryMap.get("/net/front/member/query/MemberQuery.xml/findPassword");
+		return new CommonDao(query, memberVo).getResult(MemberVo.class.getName());
+	}
 }

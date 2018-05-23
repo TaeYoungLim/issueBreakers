@@ -1,0 +1,46 @@
+----------------------------------------------------------------------------------------------
+
+dbcp 에러가 발생하여  검색해보니...
+톰캣 lib폴더에 commons-dbcp2-2.1.1.jar 를 넣어줘야 한다는 글... 
+해결 필요..
+
+[log]
+
+경고: The web application [ROOT] appears to have started a thread named [commons-pool-EvictionTimer] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.util.TimerThread.mainLoop(Unknown Source)
+ java.util.TimerThread.run(Unknown Source)
+5월 23, 2018 3:27:16 오후 org.apache.catalina.core.StandardContext reload
+심각: Exception starting Context with name []
+
+----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+테스트 쿼리
+
+		insert into board_category
+		(
+			board_category_id
+		)
+		values
+		(
+			'issue'
+		) ;
+		
+		insert into board_category
+		(
+			board_category_id
+		)
+		values
+		(
+			'information'
+		) ;

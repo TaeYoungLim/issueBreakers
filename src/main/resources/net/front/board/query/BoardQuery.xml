@@ -1,25 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <query>
-	<select>
+	<list>
+		select * from (
+						select * from ( 
+										select 
+											rownum rnum
+											,board_id boardId
+											,board_category_id boardCategoryId
+											,board_title boardTitle
+											,board_content boardContent
+											,board_writer boardWriter
+											,board_date boardDate
+										from 
+											board
+										where
+											board_category_id = ${boardCategoryId}
+										order by 
+											board_id desc 
+									) board 
+						where rnum &gt;= ${startRow} 
+					) 
+		where rnum &lt;= ${endRow}
+	</list>
+	<listCount>
 		select 
-			member_id memberId
-			,member_type memberType
-			,member_email memberEmail
-			,member_password memberPassword
-			,member_nick memberNick
-			,member_date memberDate
+			count(*) count  
 		from 
-			member
-	</select>
+			board
+		where
+			board_category_id = ${boardCategoryId}
+	</listCount>
 	<selectOne>
 		select 
-			member_id memberId
-			,member_type memberType
-			,member_email memberEmail
-			,member_password memberPassword
-			,member_nick memberNick
-			,member_date memberDate
+			board_id boardId
+			,board_category_id boardCategoryId
+			,board_title boardTitle
+			,board_content boardContent
+			,board_writer boardWriter
+			,board_date boardDate
 		from 
-			member
+			board
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
 	</selectOne>
+	<insert>
+		insert into board
+		(
+			board_id
+			,board_category_id
+			,board_title
+			,board_content
+			,board_writer
+			,board_date
+		)
+		values
+		(
+			seq_board.nextval
+			,${boardCategoryId}
+			,${boardTitle}
+			,${boardContent}
+			,${boardWriter}
+			,TO_DATE(${boardDate},'YYYY-MM-DD HH24:mi:SS')
+		) 
+	</insert>
+	<update>
+		update 
+			board 
+		set
+			board_title = ${boardTitle}
+			,board_content = ${boardContent}
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
+			and board_writer = ${boardWriter}
+	</update>
+	<delete>
+		delete from board 
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
+			and board_writer = ${boardWriter}
+	</delete>
 </query>

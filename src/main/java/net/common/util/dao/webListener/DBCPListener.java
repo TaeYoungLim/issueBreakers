@@ -19,6 +19,11 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 @WebListener
 public class DBCPListener implements ServletContextListener {
+	private String url;
+	private String username;
+	private String password;
+	private String poolName;
+	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
@@ -45,13 +50,14 @@ public class DBCPListener implements ServletContextListener {
 		}
 	}
 	
-	@Override
-	public void contextDestroyed(ServletContextEvent sce) {}
+    public void contextDestroyed(ServletContextEvent sce)  {}
 	
 	private void initConnectionPool(Properties properties) {
-		String url = properties.getProperty("url");
-		String username = properties.getProperty("username");
-		String password = properties.getProperty("password");
+		url = properties.getProperty("url");
+		username = properties.getProperty("username");
+		password = properties.getProperty("password");
+		poolName = properties.getProperty("poolname");
+		
 		
 		try {
 			// A ConnectionFactory that the pool will use to create Connections.
@@ -76,7 +82,6 @@ public class DBCPListener implements ServletContextListener {
 			Class.forName("org.apache.commons.dbcp2.PoolingDriver");
 
 			PoolingDriver driver = (PoolingDriver) DriverManager.getDriver("jdbc:apache:commons:dbcp:");
-			String poolName = properties.getProperty("poolname");
 			driver.registerPool(poolName, connectionPool);
 			
 			// Set the factory's pool property to the owning pool.

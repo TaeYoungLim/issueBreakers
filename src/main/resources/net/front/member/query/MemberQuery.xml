@@ -27,7 +27,7 @@
 		)
 		values
 		(
-			seq_board_category.nextval
+			seq_member.nextval
 			,'2'
 			,${memberEmail}
 			,${memberPassword}
@@ -44,4 +44,18 @@
 			member_nick = ${memberNick}
 			and member_type = 2
 	</findEmail>
+	<findPassword>
+		select
+			member_id memberId
+			,member_type memberType
+			,member_email memberEmail
+			,member_password memberPassword
+			,member_nick memberNick
+			,member_date memberDate
+		from 
+			member
+		where
+			member_email = ${memberEmail}
+			and member_type = 2
+	</findPassword>
 </query>

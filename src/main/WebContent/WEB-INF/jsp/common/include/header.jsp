@@ -52,13 +52,13 @@
 			%>
 			<ul class="nav navbar-nav">
 				<li class="<%=menuActive1%>">
-					<a href="/admin/categoryInput.jsp">Issue</a>
+					<a href="/front/board/list.do?boardCategoryId=issue">Issue</a>
 				</li>
 				<li class="<%=menuActive2%>">
-					<a href="/admin/categoryList.jsp">Tag</a>
+					<a href="/">Tag</a>
 				</li>
 				<li class="<%=menuActive3%>">
-					<a href="/admin/productInput.jsp">Information</a>
+					<a href="/front/board/list.do?boardCategoryId=information">Information</a>
 				</li>
 				<li class="<%=menuActive4%>">
 					<a href="/admin/productList.jsp">rank</a>

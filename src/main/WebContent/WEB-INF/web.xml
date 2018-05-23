@@ -22,7 +22,7 @@
 			fileRegExp=.*Query\\.xml
 		</param-value>
 	</context-param>
-	
+
 	<welcome-file-list>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
