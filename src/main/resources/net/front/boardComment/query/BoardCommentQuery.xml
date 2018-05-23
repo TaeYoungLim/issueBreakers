@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query>
+	<list>
+		select
+			board_comment_id boardCommentId
+			,board_category_id boardCategoryId
+			,board_id boardId
+			,board_comment_content boardCommentContent
+			,board_comment_writer boardCommentWriter
+			,board_comment_date boardCommentDate
+		from 
+			board_comment
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
+		order by 
+			board_comment_id desc 
+	</list>
+	<selectOne>
+		select 
+			board_id boardId
+			,board_category_id boardCategoryId
+			,board_title boardTitle
+			,board_content boardContent
+			,board_writer boardWriter
+			,board_date boardDate
+		from 
+			board
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
+	</selectOne>
+	<insert>
+		insert into board_comment
+		(
+		
+			board_comment_id
+			,board_category_id
+			,board_id
+			,board_comment_content
+			,board_comment_writer
+			,board_comment_date
+		)
+		values
+		(
+			seq_board_comment.nextval
+			,${boardCategoryId}
+			,${boardId}
+			,${boardCommentContent}
+			,${boardCommentWriter}
+			,TO_DATE(${boardCommentDate},'YYYY-MM-DD HH24:mi:SS')
+		) 
+	</insert>
+	<update>
+		update 
+			board 
+		set
+			board_title = ${boardTitle}
+			,board_content = ${boardContent}
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
+			and board_writer = ${boardWriter}
+	</update>
+	<delete>
+		delete from board 
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
+			and board_writer = ${boardWriter}
+	</delete>
+</query>

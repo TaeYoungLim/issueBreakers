@@ -20,9 +20,14 @@
 					<td>${boardVo.boardDate}</td>
 				</tr>
 				<tr>
-					<th>내용</th>
-					<td>${boardVo.boardContent}</td>
+					<th colspan="2">내용</th>
 				</tr>
+				<tr>
+					<td colspan="2">
+						<textarea id="content" class="enable" style="display:none;">${boardVo.boardContent}</textarea>
+					</td>
+				</tr>
+				
 			</tbody>
 		</table>
 		
@@ -48,8 +53,11 @@
 			<tbody>
 			</tbody>
 		</table>
-		<textarea id="boardContent" name="boardContent" class="form-control margin_top_30" placeholder="content" rows="2"></textarea>
-		<input type="submit" value="등록" class="btn btn-primary">
+		
+		<c:if test="${!empty sessionScope.memberVo}">
+			<textarea id="boardCommentContent" name="boardCommentContent" class="form-control margin_top_30" placeholder="content" rows="2" style="display:none;"></textarea>
+			<input type="button" value="등록" class="btn btn-primary" onclick="registComment()">
+		</c:if>
 		
 		<script>
 			function getCommentList() {
@@ -57,16 +65,53 @@
 					url:"/front/boardComment/list.ajax"
 					,data:{
 						boardId : "${param.boardId}"
-						boardCategoryId : "${param.boardCategoryId}"
+						,boardCategoryId : "${param.boardCategoryId}"
 					}
 					,success:function(res) {
 						$("#comment tbody").html(res);
+						$("textarea.enable").not($("#boardCommentContent")).each(function (){
+							CodeMirror.fromTextArea($(this)[0], {
+								height: "350px"						
+								,lineNumbers: true
+								,readOnly: true
+								,mode : "javascript"
+							    ,htmlMode: true
+							});
+						});
 					}
 				});
 			}
 			
+			function registComment() {
+				var boardCommentContent = $("#boardCommentContent");
+				$.ajax({
+					url:"/front/boardComment/regist.ajax"
+					,data:{
+						boardId : "${param.boardId}"
+						,boardCategoryId : "${param.boardCategoryId}"
+						,boardCommentContent : commentEditor.getValue()
+					}
+					,success:function(res) {
+						alert(res);
+						commentEditor.setValue("");
+						getCommentList();
+					}
+				});
+			}
+			
+			var commentEditor = null;
+			
 			$(document).ready(function() {
 				getCommentList();
+				
+				if($("#boardCommentContent").length > 0) {
+					commentEditor = CodeMirror.fromTextArea($("#boardCommentContent")[0], {
+						lineNumbers: true
+						,height: "150"
+						,mode : "javascript"
+					    ,htmlMode: true
+					});
+				}
 			});
 		</script>
 	</div>

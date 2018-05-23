@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE>
 <html>
@@ -9,15 +10,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 
+<!-- javascript -->
+<script src="/js/jquery/jquery-3.3.1.js"></script>
+<script src="/util/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script src="/util/codemirror-5.38.0/codemirror.js"></script>
+<script src="/util/codemirror-5.38.0/mode/javascript/javascript.js"></script>
+
 <!-- css -->
 <link rel="stylesheet" href="/util/bootstrap-3.3.2-dist/css/bootstrap.css">
 <link rel="stylesheet" href="/util/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/util/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css">
-
-<!-- javascript -->
-<script src="/js/jquery/jquery-3.3.1.js"></script>
-<script src="/util/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/util/codemirror-5.38.0/codemirror.css">
 
 <!-- Fixed navbar -->
 <nav class="navbar">
@@ -100,5 +104,4 @@
 </nav>
 
 </head>
-
 <body>
