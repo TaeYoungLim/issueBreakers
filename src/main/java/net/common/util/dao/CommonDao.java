@@ -111,6 +111,7 @@ public class CommonDao {
 			
 			for(String parameterName : parameterNames) {
 				try {
+					// 현재 클래스에서 필드를 찾는다.
 					Field field = clazz.getDeclaredField(parameterName);
 					field.setAccessible(true);
 					
@@ -121,6 +122,7 @@ public class CommonDao {
 					}
 				} catch (NoSuchFieldException e) {
 					// TODO Auto-generated catch block
+					// 상속 클래스에서 필드를 찾는다.
 					Field field;
 					try {
 						field = clazz.getSuperclass().getDeclaredField(parameterName);

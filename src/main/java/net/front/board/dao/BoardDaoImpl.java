@@ -79,4 +79,36 @@ public class BoardDaoImpl implements BoardDao {
 		commonDao.setPreparedStatement(query, boardVo);
 		return commonDao.getResultUpdate();
 	}
+	
+	@Override
+	public ArrayList<Object> listByWriter(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		String query = QueryMakerListener._QueryMap.get(queryPath + "/listByWriter");
+		commonDao.setPreparedStatement(query, boardVo);
+		return commonDao.getResult(BoardVo.class.getName());
+	}
+	
+	@Override
+	public int listCountByWriter(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		String query = QueryMakerListener._QueryMap.get(queryPath + "/listCountByWriter");
+		commonDao.setPreparedStatement(query, boardVo);
+		return commonDao.getResultOneInt("count");
+	}
+	
+	@Override
+	public ArrayList<Object> listSearch(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		String query = QueryMakerListener._QueryMap.get(queryPath + "/listSearch");
+		commonDao.setPreparedStatement(query, boardVo);
+		return commonDao.getResult(BoardVo.class.getName());
+	}
+	
+	@Override
+	public int listCountSearch(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		String query = QueryMakerListener._QueryMap.get(queryPath + "/listCountSearch");
+		commonDao.setPreparedStatement(query, boardVo);
+		return commonDao.getResultOneInt("count");
+	}
 }

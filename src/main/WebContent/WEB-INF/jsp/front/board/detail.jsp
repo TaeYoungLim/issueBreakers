@@ -5,7 +5,7 @@
 	
 	<div class="container content">
 		<div class="line"></div>
-		<h1 class="no-margin">상세</h1>
+		<h3 class="no-margin">상세</h3>
 		<table class="table table-hover" style="table-layout: fixed;">
 			<colgroup>
 				<col width="9%">

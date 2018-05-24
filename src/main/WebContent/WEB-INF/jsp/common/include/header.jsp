@@ -66,39 +66,56 @@
 					<a href="/front/board/list.do?boardCategoryId=information">Information</a>
 				</li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
 			<c:choose>
 				<c:when test="${!empty sessionScope.memberVo}">
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<form class="navbar-form navbar-left" action="/action_page.php">
-								<div class="input-group" style="width:200px; margin-top:8px;">
-								    <span class="input-group-addon"><i class="fas fa-search"></i></span>
-								    <input id="text" type="text" class="form-control" name="text" placeholder="write">
-								</div>
-							</form>
-						</li>
-						<li>
-							<a href="#">${sessionScope.memberVo.memberNick} 님</a>
-						</li>
-						<li>
-							<a href="/front/auth/logout.do">로그아웃</a>
-						</li>
-					</ul>
+					<li>
+						<a href="/front/myPage/myPage.do">${sessionScope.memberVo.memberNick} 님</a>
+					</li>
+					<li>
+						<a href="/front/auth/logout.do">로그아웃</a>
+					</li>
 				</c:when>
 				<c:otherwise>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="<%=menuActive1%>">
-							<a href="/front/auth/login.do">로그인</a>
-						</li>
-						<li class="<%=menuActive2%>">
-							<a href="/front/auth/regist.do">회원가입</a>
-						</li>
-					</ul>
+					<li class="<%=menuActive1%>">
+						<a href="/front/auth/login.do">로그인</a>
+					</li>
+					<li class="<%=menuActive2%>">
+						<a href="/front/auth/regist.do">회원가입</a>
+					</li>
 				</c:otherwise>
 			</c:choose>
+			<li>
+				<a href="javascript:void(0);" class="search"><i class="fas fa-search"></i>검색</a>
+			</li>
+			</ul>
 		</div>
 		<!--/.nav-collapse -->
 	</div>
 </nav>
+
+<form id="searchForm" action="/front/search/search.do" style="display:none; position:absolute; top:50px; right:50px; width: 500px; z-index:9999999999;">
+	<div class="form-group" style="float:left; width:500px;">
+		<div class="col-sm-10">
+			<input type="text" id="searchWord" name="searchWord" value="${param.searchWord}" class="form-control" placeholder="search word" style="width:350px; float:left;">
+			<button onclick="$('#searchForm').action();" style="background:none; color:#888888; border:0px; float:left; height:34px;"><i class="fas fa-search"></i></button>
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".search").click(function() {
+			var obj = $("#searchForm");
+			
+			if(obj.hasClass("active")) {
+				$("#searchForm").hide().removeClass("active");	
+			} else {
+				$("#searchForm").show().addClass("active");
+			}
+		});	
+	});
+</script>
+
 </head>
 <body>

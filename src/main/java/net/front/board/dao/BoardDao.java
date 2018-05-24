@@ -13,4 +13,8 @@ public interface BoardDao {
 	public int delete(BoardVo boardVo);
 	public int updateSelection(BoardVo boardVo);
 	public int updateVote(BoardVo boardVo);
+	public ArrayList<Object> listByWriter(BoardVo boardVo);
+	public int listCountByWriter(BoardVo boardVo);
+	public ArrayList<Object> listSearch(BoardVo boardVo);
+	public int listCountSearch(BoardVo boardVo);
 }

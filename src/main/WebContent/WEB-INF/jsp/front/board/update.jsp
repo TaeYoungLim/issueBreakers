@@ -4,7 +4,7 @@
 	<c:set var="boardVo" value="${requestScope.boardVoList[0]}"/>
 	<div class="container content">
 		<div class="line"></div>
-		<h1 class="no-margin">글수정</h1>
+		<h3 class="no-margin">글수정</h3>
 		
 		<form action="/front/board/update.do" method="post" class="form-horizontal" onsubmit="moveData();">
 			<input type="hidden" id="boardId" name="boardId" value="${param.boardId}">

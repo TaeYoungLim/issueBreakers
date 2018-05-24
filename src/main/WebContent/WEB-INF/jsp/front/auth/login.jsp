@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/common/include/header.jsp"%>
 	<div class="container content">
 		<div class="line"></div>
-		<h1 class="no-margin">로그인</h1>
+		<h3 class="no-margin">로그인</h3>
 		
 		<c:if test="${!empty requestScope.msg}">
 			${requestScope.msg}

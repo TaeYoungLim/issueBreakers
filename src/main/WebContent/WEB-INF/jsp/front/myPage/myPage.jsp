@@ -2,15 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/include/header.jsp"%>
 	<div class="container content">
-		<div class="line"></div>
-		<h3 class="no-margin">목록</h3>
+		<div role="tabpanel" class="margin_top_30">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li id="issue" role="presentation" class="<c:if test="${empty requestScope.boardCategoryId || requestScope.boardCategoryId eq 'issue'}">active</c:if>">
+					<a href="/front/myPage/myPage.do" aria-controls="home" role="tab" data-toggle="tab">내가 작성한 질문</a>
+				</li>
+				<li id="information" role="presentation" class="<c:if test="${requestScope.boardCategoryId eq 'information'}">active</c:if>">
+					<a href="/front/myPage/myPage.do" aria-controls="profile" role="tab" data-toggle="tab">내가 작성한 정보</a>
+				</li>
+			</ul>
+		</div>
+		
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th class="text-center">title</th>
 					<th class="text-center">comment</th>
 					<c:choose>
-						<c:when test="${param.boardCategoryId eq 'issue'}">
+						<c:when test="${requestScope.boardCategoryId eq 'issue'}">
 							<th class="text-center">selection</th>
 						</c:when>
 						<c:otherwise>
@@ -29,7 +39,7 @@
 								<td class="text-center">
 									
 									<c:choose>
-										<c:when test="${param.boardCategoryId eq 'issue'}">
+										<c:when test="${requestScope.boardCategoryId eq 'issue'}">
 											<c:choose>
 												<c:when test="${result.boardSelection eq 'Y'}">
 													<i class="fas fa-check color_green"></i>
@@ -43,7 +53,6 @@
 											${result.boardVote}
 										</c:otherwise>
 									</c:choose>
-									
 								</td>
 							</tr>
 						</c:forEach>
@@ -54,10 +63,8 @@
 						</tr>
 					</c:otherwise>
 				</c:choose>
-				
 			</tbody>
 		</table>
-		
 		<div>
 			${requestScope.paging}
 		</div>
@@ -67,19 +74,29 @@
 			<input type="button" value="글쓰기" class="btn btn-primary" onclick="click_regist()">
 		</c:if>
 	</div>
-	<script type="text/javascript">
+	<script>
+		$('#issue a').click(function (e) {
+			e.preventDefault();
+			location.href="/front/myPage/myPage.do?boardCategoryId=issue";
+		});
+
+		$('#information a').click(function(e) {
+			e.preventDefault();
+			location.href="/front/myPage/myPage.do?boardCategoryId=information";
+		});
+		
 		function click_regist() {
-			location.href = "/front/board/regist.do?boardCategoryId=${param.boardCategoryId}";
+			location.href = "/front/board/regist.do?boardCategoryId=${requestScope.boardCategoryId}";
 		}
 		
 		function click_detail(boardId) {
-			location.href = "/front/board/detail.do?boardId=" + boardId + "&boardCategoryId=${param.boardCategoryId}";
+			location.href = "/front/board/detail.do?boardId=" + boardId + "&boardCategoryId=${requestScope.boardCategoryId}";
 		}
 		
 		// 페이지 번호
 		$(".pageMove").click(function() {
 			if (!$(this).hasClass("on")) { 
-				location.href = "/front/board/list.do?boardCategoryId=${param.boardCategoryId}&pageNum=" + $(this).attr("data-page-no");
+				location.href = "/front/board/list.do?boardCategoryId=${requestScope.boardCategoryId}&pageNum=" + $(this).attr("data-page-no");
 			}
 		});
 	</script>

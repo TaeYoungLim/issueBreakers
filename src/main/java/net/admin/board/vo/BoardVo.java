@@ -13,6 +13,8 @@ public class BoardVo extends PageVo {
 	private String boardSelection;
 	private int boardSelectionCommentId;
 	
+	private String tag;
+	private String searchWord;
 	private String memberName;
 	private int commentCount; // 댓글 갯수
 	
@@ -63,7 +65,11 @@ public class BoardVo extends PageVo {
 		this.boardWriter = boardWriter;
 	}
 	
-	
+	public BoardVo(String boardCategoryId,int boardWriter) {
+		super();
+		this.boardCategoryId = boardCategoryId;
+		this.boardWriter = boardWriter;
+	}
 	
 	public BoardVo(String boardCategoryId, int startRow, int endRow) {
 		super(startRow, endRow);
@@ -156,5 +162,21 @@ public class BoardVo extends PageVo {
 
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 }

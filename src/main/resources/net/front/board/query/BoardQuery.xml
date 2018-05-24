@@ -136,4 +136,102 @@
 			board_id = ${boardId}
 			and board_category_id = ${boardCategoryId}
 	</updateVote>
+	<listByWriter>
+		select * from (
+						select * from ( 
+										select 
+											rownum rnum
+											,a.board_id boardId
+											,a.board_category_id boardCategoryId
+											,a.board_title boardTitle
+											,a.board_content boardContent
+											,a.board_writer boardWriter
+											,a.board_date boardDate
+											,a.board_vote boardVote
+											,a.board_selection boardSelection
+											,a.board_selection_comment_id boardSelectionCommentId
+											,(
+												select count(*) from board_comment
+												where 
+													board_id = a.board_id
+													and board_category_id = a.board_category_id
+											) commentCount
+											,(
+												select 
+													member_nick
+												from
+													member
+												where
+													member_id = a.board_writer
+											) memberName
+										from 
+											board a
+										where
+											a.board_category_id = ${boardCategoryId}
+											and a.board_writer = ${boardWriter}
+										order by 
+											a.board_id desc 
+									) board 
+						where rnum &gt;= ${startRow} 
+					) 
+		where rnum &lt;= ${endRow}
+	</listByWriter>
+	<listCountByWriter>
+		select 
+			count(*) count  
+		from 
+			board
+		where
+			board_category_id = ${boardCategoryId}
+			and board_writer = ${boardWriter}
+	</listCountByWriter>	
+	<listSearch>
+		select * from (
+						select * from ( 
+										select 
+											rownum rnum
+											,a.board_id boardId
+											,a.board_category_id boardCategoryId
+											,a.board_title boardTitle
+											,a.board_content boardContent
+											,a.board_writer boardWriter
+											,a.board_date boardDate
+											,a.board_vote boardVote
+											,a.board_selection boardSelection
+											,a.board_selection_comment_id boardSelectionCommentId
+											,(
+												select count(*) from board_comment
+												where 
+													board_id = a.board_id
+													and board_category_id = a.board_category_id
+											) commentCount
+											,(
+												select 
+													member_nick
+												from
+													member
+												where
+													member_id = a.board_writer
+											) memberName
+										from 
+											board a
+										where
+											a.board_title like '%' || ${searchWord} || '%'
+											or a.board_content like '%' || ${searchWord} || '%'
+										order by 
+											a.board_id desc 
+									) board 
+						where rnum &gt;= ${startRow} 
+					) 
+		where rnum &lt;= ${endRow}
+	</listSearch>
+	<listCountSearch>
+		select 
+			count(*) count  
+		from 
+			board
+		where
+			board_title like '%' || ${searchWord} || '%'
+			or board_content like '%' || ${searchWord} || '%'
+	</listCountSearch>
 </query>

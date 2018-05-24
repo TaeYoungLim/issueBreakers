@@ -18,7 +18,7 @@
 	</div>
 	<div class="container content index">
 		<div class="line"></div>
-		<h1 class="no-margin">Issue</h1>
+		<h3 class="no-margin">Issue</h3>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -57,7 +57,7 @@
 		</table>
 		
 		<div class="line"></div>
-		<h1 class="no-margin">Information</h1>
+		<h3 class="no-margin">Information</h3>
 		<table class="table table-hover">
 			<thead>
 				<tr>

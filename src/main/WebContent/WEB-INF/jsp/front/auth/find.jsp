@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/common/include/header.jsp"%>
 	<div class="container content index">
 		<div class="line"></div>
-		<h1 class="no-margin">아이디 찾기</h1>
+		<h3 class="no-margin">아이디 찾기</h3>
 		
 		<form method="post" onsubmit="return false" class="form-horizontal">
 			<div class="form-group">
@@ -16,7 +16,7 @@
 		</form>
 		
 		<div class="line"></div>
-		<h1 class="no-margin">비밀번호 찾기</h1>
+		<h3 class="no-margin">비밀번호 찾기</h3>
 		
 		<form method="post" onsubmit="return false" class="form-horizontal">
 			<div class="form-group">

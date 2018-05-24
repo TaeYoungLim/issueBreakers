@@ -33,15 +33,21 @@ public class PageVo {
 	 * @return PageVo(다음메소드와 연결해서 쓰기위해)
 	 */
 	public PageVo setPageData() {
-	    startRow = (pageNum - 1) * pageSize + 1;
-	    endRow = pageNum * pageSize;
+	    startRow = (pageNum - 1) * pageSize + 1; // 1 11
+	    endRow = pageNum * pageSize; // 10 20 
 	    number = 0;
 		
 		pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
-        startPage = (int)(pageNum/10)*10+1;
+        startPage = (int)(pageNum/11) * 10 + 1; // 1 11
 		pageBlock = 10;
-        endPage = startPage + pageBlock-1;
+        endPage = startPage + pageBlock - 1; // 10 20
 		
+		// endPage
+		int limitPage = (this.count / this.pageSize) + (this.count % this.pageSize == 0 ? 0 : 1);
+		
+		if(limitPage < this.endPage)
+			this.endPage = limitPage;
+        
 		return this;
 	}
 	
