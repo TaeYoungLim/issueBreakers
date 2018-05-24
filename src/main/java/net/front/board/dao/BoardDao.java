@@ -11,4 +11,6 @@ public interface BoardDao {
 	public int insert(BoardVo boardVo);
 	public int update(BoardVo boardVo);
 	public int delete(BoardVo boardVo);
+	public int updateSelection(BoardVo boardVo);
+	public int updateVote(BoardVo boardVo);
 }

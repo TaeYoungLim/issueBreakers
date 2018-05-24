@@ -8,6 +8,14 @@
 			,board_comment_content boardCommentContent
 			,board_comment_writer boardCommentWriter
 			,board_comment_date boardCommentDate
+			,(
+				select 
+					member_nick
+				from
+					member
+				where
+					member_id = board_comment_writer
+			) memberName
 		from 
 			board_comment
 		where
@@ -24,6 +32,14 @@
 			,board_content boardContent
 			,board_writer boardWriter
 			,board_date boardDate
+			,(
+				select 
+					member_nick
+				from
+					member
+				where
+					member_id = board_comment_writer
+			) memberName
 		from 
 			board
 		where

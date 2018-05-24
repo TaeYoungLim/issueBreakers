@@ -11,18 +11,18 @@
 		
 		<form action="/front/auth/login.do" method="post" class="form-horizontal">
 			<div class="form-group">
-				<label for="memberEmail" class="col-sm-1 control-label">email</label>
+				<label for="memberEmail" class="col-sm-1 control-label">이메일</label>
 				<div class="col-sm-10">
 					<input type="text" id="memberEmail" name="memberEmail" value="" class="form-control" placeholder="email">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="memberPassword" class="col-sm-1 control-label">password</label>
+				<label for="memberPassword" class="col-sm-1 control-label">비밀번호</label>
 				<div class="col-sm-10">
 					<input type="password" id="memberPassword" name="memberPassword" value="" class="form-control" placeholder="password">
 				</div>
 			</div>
-			<input type="submit" value="login" class="btn btn-primary">
+			<input type="submit" value="로그인" class="btn btn-primary">
 		</form>
 		
 		<a href="/front/auth/find.do">회원정보를 잊어버리셨나요?</a>

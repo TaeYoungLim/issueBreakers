@@ -21,6 +21,7 @@ import net.front.member.vo.MemberVo;
 public class BoardCommentAjaxServlet extends HttpServletManager {
 
 	private BoardCommentDao boardCommentDao = new BoardCommentDaoImpl();
+	private BoardDao boardDao = new BoardDaoImpl();
 	
 	/**
 	 * 
@@ -50,7 +51,7 @@ public class BoardCommentAjaxServlet extends HttpServletManager {
 		
 		String boardId = request.getParameter("boardId");
 		
-		if(boardCategoryId == null || boardCategoryId.equals("")) {
+		if(boardId == null || boardId.equals("")) {
 			response.sendRedirect("/");
 			return;
 		}
@@ -67,7 +68,7 @@ public class BoardCommentAjaxServlet extends HttpServletManager {
 				if(memberVo == null) {
 					request.setAttribute("msg", "로그인 후 이용해주세요.");
 					return;
-				}
+				} 
 				
 				String boardCommentContent = request.getParameter("boardCommentContent");
 				
@@ -80,83 +81,6 @@ public class BoardCommentAjaxServlet extends HttpServletManager {
 				}
 				
 				break;
-//			case "/update":
-//				if(type.equals("post")) {
-//					if(memberVo == null) {
-//						response.sendRedirect("/front/auth/login.do");
-//						return;
-//					}
-//					
-//					String boardId = request.getParameter("boardId");
-//					
-//					if(boardId == null || boardId.equals("")) {
-//						response.sendRedirect("/front/board/list.do?boardCategoryId=" + boardCategoryId);
-//						return;
-//					}
-//					
-//					boardCategoryId = request.getParameter("boardCategoryId");
-//					String boardContent = request.getParameter("boardContent");
-//					String boardTitle = request.getParameter("boardTitle");
-//					
-//					BoardVo boardParameterVo = new BoardVo(Integer.parseInt(boardId) , boardCategoryId, boardTitle, boardContent, memberVo.getMemberId());
-//					
-//					if(update(request, response, memberVo, boardParameterVo) > 0) {
-//						response.sendRedirect("/front/board/detail.do?boardId="+boardId+"&boardCategoryId=" + boardCategoryId);
-//						return;
-//					} else {
-//						response.sendRedirect("/front/board/update.do?boardId="+boardId+"&boardCategoryId=" + boardCategoryId);
-//						return;
-//					}
-//				} else {
-//					String boardId = request.getParameter("boardId");
-//					
-//					if(boardId == null || boardId.equals("")) {
-//						response.sendRedirect("/front/board/list.do?boardCategoryId=" + boardCategoryId);
-//						return;
-//					}
-//					
-//					BoardVo boardParameterVo = new BoardVo(Integer.parseInt(boardId), boardCategoryId);
-//					
-//					detail(request, response, boardParameterVo);
-//				}
-//				
-//				break;
-//			
-//			case "/detail":
-//				String boardId = request.getParameter("boardId");
-//				
-//				if(boardId == null || boardId.equals("")) {
-//					response.sendRedirect("/front/board/list.do?boardCategoryId=" + boardCategoryId);
-//					return;
-//				}
-//				
-//				BoardVo boardParameterVo = new BoardVo(Integer.parseInt(boardId), boardCategoryId);
-//				
-//				detail(request, response, boardParameterVo);
-//				break;	
-//				
-//			case "/delete":
-//				if(memberVo == null) {
-//					response.sendRedirect("/front/auth/login.do");
-//					return;
-//				}
-//				
-//				boardId = request.getParameter("boardId");
-//				
-//				if(boardId == null || boardId.equals("")) {
-//					response.sendRedirect("/front/board/list.do?boardCategoryId=" + boardCategoryId);
-//					return;
-//				}
-//				
-//				boardParameterVo = new BoardVo(Integer.parseInt(boardId), boardCategoryId, memberVo.getMemberId());
-//				
-//				if(delete(request, response, memberVo, boardParameterVo) > 0) {
-//					response.sendRedirect("/front/board/list.do?boardCategoryId=" + boardCategoryId);
-//					return;
-//				} else {
-//					response.sendRedirect("/front/board/detail.do?boardId="+boardId+"&boardCategoryId=" + boardCategoryId);
-//					return;
-//				}
 		}
 		
 		String fullPath = "/front/boardComment" + path + "Ajax.jsp";
@@ -172,8 +96,19 @@ public class BoardCommentAjaxServlet extends HttpServletManager {
 	 */
 	private void list(HttpServletRequest request, HttpServletResponse response, BoardCommentVo boardCommentParameterVo) {
 		List<Object> boardCommentVoList = boardCommentDao.list(boardCommentParameterVo);
-		
 		request.setAttribute("boardCommentVoList", boardCommentVoList);
+		
+		BoardCommentVo boardCommentVo = null;
+		
+		for(Object object : boardCommentVoList) {
+			boardCommentVo = (BoardCommentVo) object;
+		}
+		
+		if(boardCommentVo != null) {
+			BoardVo boardVo = new BoardVo(boardCommentVo.getBoardId(), boardCommentVo.getBoardCategoryId());
+			List<Object> boardVoList = boardDao.selectOne(boardVo);
+			request.setAttribute("boardVoList", boardVoList);
+		}
 	}
 	
 	/**

@@ -28,19 +28,33 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>a</td>
-					<td class="text-center">5</td>
-					<td class="text-center"><i class="fas fa-times"></i></td>
-				</tr>
-				<tr>
-					<td>a</td>
-					<td class="text-center">8</td>
-					<td class="text-center"><i class="fas fa-check"></i></td>
-				</tr>
+				<c:choose>
+					<c:when test="${!empty requestScope.issueBoardVoList}">
+						<c:forEach var="result" items="${requestScope.issueBoardVoList}" varStatus="status">
+							<tr onclick="click_detail('${result.boardId}', '${result.boardCategoryId}')">
+								<td>${result.boardTitle}</td>
+								<td class="text-center">${result.commentCount}</td>
+								<td class="text-center">
+									<c:choose>
+										<c:when test="${result.boardSelection eq 'Y'}">
+											<i class="fas fa-check color_green"></i>
+										</c:when>
+										<c:otherwise>
+											<i class="fas fa-times"></i>
+										</c:otherwise>
+									</c:choose>
+								</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="3" class="text-center">데이터 없음</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 			</tbody>
 		</table>
-		
 		
 		<div class="line"></div>
 		<h1 class="no-margin">Information</h1>
@@ -53,12 +67,31 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>a</td>
-					<td class="text-center">5</td>
-					<td class="text-center">10</td>
-				</tr>
+				<c:choose>
+					<c:when test="${!empty requestScope.informationBoardVoList}">
+						<c:forEach var="result" items="${requestScope.informationBoardVoList}" varStatus="status">
+							<tr onclick="click_detail('${result.boardId}', '${result.boardCategoryId}')">
+								<td>${result.boardTitle}</td>
+								<td class="text-center">${result.commentCount}</td>
+								<td class="text-center">
+									${result.boardVote}
+								</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="3" class="text-center">데이터 없음</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+				
 			</tbody>
 		</table>
 	</div>
+	<script>
+		function click_detail(boardId, boardCategoryId) {
+			location.href = "/front/board/detail.do?boardId=" + boardId + "&boardCategoryId=" + boardCategoryId;
+		}
+	</script>
 <%@ include file="/WEB-INF/jsp/common/include/footer.jsp"%>

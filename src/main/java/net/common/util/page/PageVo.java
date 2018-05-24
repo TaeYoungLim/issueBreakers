@@ -4,6 +4,16 @@ public class PageVo {
 	
 	private String suffix; // 다중 페이지, 검색에 대한 함수 사용등 suffix를 부여하기 위한 변수
 	
+	public PageVo() {
+		super();
+	}
+	
+	public PageVo(int startRow, int endRow) {
+		super();
+		this.startRow = startRow;
+		this.endRow = endRow;
+	}
+
 	/* page */
 	int pageNum = 1;
     int startRow;
@@ -25,7 +35,6 @@ public class PageVo {
 	public PageVo setPageData() {
 	    startRow = (pageNum - 1) * pageSize + 1;
 	    endRow = pageNum * pageSize;
-	    count = 0;
 	    number = 0;
 		
 		pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);

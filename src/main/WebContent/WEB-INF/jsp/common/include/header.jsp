@@ -14,7 +14,7 @@
 <script src="/js/jquery/jquery-3.3.1.js"></script>
 <script src="/util/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
 <script src="/util/codemirror-5.38.0/codemirror.js"></script>
-<script src="/util/codemirror-5.38.0/mode/javascript/javascript.js"></script>
+<script src="/util/codemirror-5.38.0/simplescrollbars.js"></script>
 
 <!-- css -->
 <link rel="stylesheet" href="/util/bootstrap-3.3.2-dist/css/bootstrap.css">
@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/util/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="/util/codemirror-5.38.0/codemirror.css">
+<link rel="stylesheet" href="/util/codemirror-5.38.0/simplescrollbars.css">
 
 <!-- Fixed navbar -->
 <nav class="navbar">
@@ -44,9 +45,9 @@
 				String menuActive4 = "";
 				
 				String path = request.getServletPath();
-				if(path.equals("/admin/categoryInput.jsp") || path.equals("/main.jsp")) {
+				if(path.equals("/admin/categoryInput.jsp")) {
 					menuActive1 = "active";
-				} else if (path.equals("/admin/categoryList.jsp") || path.equals("/myshop/member/register.jsp")) {
+				} else if (path.equals("/admin/categoryList.jsp")) {
 					menuActive2 = "active";
 				} else if (path.equals("/admin/productInput.jsp")) {
 					menuActive3 = "active";
@@ -59,13 +60,10 @@
 					<a href="/front/board/list.do?boardCategoryId=issue">Issue</a>
 				</li>
 				<li class="<%=menuActive2%>">
-					<a href="/">Tag</a>
+					<a href="/front/tag/list.do">Tag</a>
 				</li>
 				<li class="<%=menuActive3%>">
 					<a href="/front/board/list.do?boardCategoryId=information">Information</a>
-				</li>
-				<li class="<%=menuActive4%>">
-					<a href="/admin/productList.jsp">rank</a>
 				</li>
 			</ul>
 			<c:choose>
@@ -102,6 +100,5 @@
 		<!--/.nav-collapse -->
 	</div>
 </nav>
-
 </head>
 <body>

@@ -5,34 +5,45 @@ import java.util.ArrayList;
 import net.common.util.dao.CommonDao;
 import net.common.util.query.webListener.QueryMakerListener;
 import net.front.member.vo.MemberVo;
+import net.front.tag.vo.TagVo;
 
 public class MemberDaoImpl implements MemberDao {
 
+	private CommonDao commonDao;
+	
+	public MemberDaoImpl() {
+		commonDao = CommonDao.getInstance();
+	}
+	
 	@Override
 	public ArrayList<Object> login(MemberVo memberVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get("/net/front/member/query/MemberQuery.xml/login");
-		return new CommonDao(query, memberVo).getResult(MemberVo.class.getName());
+		commonDao.setPreparedStatement(query, memberVo);
+		return commonDao.getResult(MemberVo.class.getName());
 	}
 	
 	@Override
 	public int insert(MemberVo memberVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get("/net/front/member/query/MemberQuery.xml/insert");
-		return new CommonDao(query, memberVo).getResultUpdate();
+		commonDao.setPreparedStatement(query, memberVo);
+		return commonDao.getResultUpdate();
 	}
 	
 	@Override
 	public ArrayList<Object> findEmail(MemberVo memberVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get("/net/front/member/query/MemberQuery.xml/findEmail");
-		return new CommonDao(query, memberVo).getResult(MemberVo.class.getName());
+		commonDao.setPreparedStatement(query, memberVo);
+		return commonDao.getResult(MemberVo.class.getName());
 	}
 	
 	@Override
 	public ArrayList<Object> findPassword(MemberVo memberVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get("/net/front/member/query/MemberQuery.xml/findPassword");
-		return new CommonDao(query, memberVo).getResult(MemberVo.class.getName());
+		commonDao.setPreparedStatement(query, memberVo);
+		return commonDao.getResult(MemberVo.class.getName());
 	}
 }

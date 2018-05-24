@@ -44,3 +44,398 @@ dbcp 에러가 발생하여  검색해보니...
 		(
 			'information'
 		) ;
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+5월 24, 2018 3:33:48 오후 org.apache.catalina.core.StandardContext reload
+정보: Reloading Context with name [] has started
+5월 24, 2018 3:33:48 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 1 instance(s) to be deallocated for Servlet [net.front.board.servlet.BoardServlet]
+5월 24, 2018 3:33:49 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 1 instance(s) to be deallocated for Servlet [net.front.board.servlet.BoardServlet]
+5월 24, 2018 3:33:50 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 1 instance(s) to be deallocated for Servlet [net.front.board.servlet.BoardServlet]
+5월 24, 2018 3:33:50 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 3 instance(s) to be deallocated for Servlet [net.front.auth.servlet.RegistServlet]
+5월 24, 2018 3:33:51 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 3 instance(s) to be deallocated for Servlet [net.front.auth.servlet.RegistServlet]
+5월 24, 2018 3:33:52 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 3 instance(s) to be deallocated for Servlet [net.front.auth.servlet.RegistServlet]
+5월 24, 2018 3:33:52 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 2 instance(s) to be deallocated for Servlet [net.front.auth.servlet.LoginServlet]
+5월 24, 2018 3:33:53 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 2 instance(s) to be deallocated for Servlet [net.front.auth.servlet.LoginServlet]
+5월 24, 2018 3:33:54 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 2 instance(s) to be deallocated for Servlet [net.front.auth.servlet.LoginServlet]
+5월 24, 2018 3:33:54 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 1 instance(s) to be deallocated for Servlet [net.front.boardComment.servlet.BoardCommentAjaxServlet]
+5월 24, 2018 3:33:55 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 1 instance(s) to be deallocated for Servlet [net.front.boardComment.servlet.BoardCommentAjaxServlet]
+5월 24, 2018 3:33:56 오후 org.apache.catalina.core.StandardWrapper unload
+정보: Waiting for 1 instance(s) to be deallocated for Servlet [net.front.boardComment.servlet.BoardCommentAjaxServlet]
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesJdbc
+경고: The web application [ROOT] registered the JDBC driver [org.apache.commons.dbcp2.PoolingDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+경고: The web application [ROOT] appears to have started a thread named [commons-pool-EvictionTimer] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.util.TimerThread.mainLoop(Unknown Source)
+ java.util.TimerThread.run(Unknown Source)
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+경고: The web application [ROOT] is still processing a request that has yet to finish. This is very likely to create a memory leak. You can control the time allowed for requests to finish by using the unloadDelay attribute of the standard Context implementation. Stack trace of request processing thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.park(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+ org.apache.commons.pool2.impl.LinkedBlockingDeque.takeFirst(LinkedBlockingDeque.java:583)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:442)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)
+ org.apache.commons.dbcp2.PoolingDriver.connect(PoolingDriver.java:129)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ net.common.util.dao.CommonDao.setConnection(CommonDao.java:40)
+ net.common.util.dao.CommonDao.<init>(CommonDao.java:29)
+ net.front.member.dao.MemberDaoImpl.login(MemberDaoImpl.java:15)
+ net.front.auth.servlet.LoginServlet.processPost(LoginServlet.java:44)
+ net.front.auth.servlet.LoginServlet.doPost(LoginServlet.java:33)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:648)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ net.common.util.filter.EncodingFilter.doFilter(EncodingFilter.java:45)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+ org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:94)
+ org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
+ org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+ org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+ org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:620)
+ org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+ org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:502)
+ org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1132)
+ org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:684)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1539)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1495)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+ java.lang.Thread.run(Unknown Source)
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+경고: The web application [ROOT] is still processing a request that has yet to finish. This is very likely to create a memory leak. You can control the time allowed for requests to finish by using the unloadDelay attribute of the standard Context implementation. Stack trace of request processing thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.park(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+ org.apache.commons.pool2.impl.LinkedBlockingDeque.takeFirst(LinkedBlockingDeque.java:583)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:442)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)
+ org.apache.commons.dbcp2.PoolingDriver.connect(PoolingDriver.java:129)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ net.common.util.dao.CommonDao.setConnection(CommonDao.java:40)
+ net.common.util.dao.CommonDao.<init>(CommonDao.java:29)
+ net.front.member.dao.MemberDaoImpl.insert(MemberDaoImpl.java:22)
+ net.front.auth.servlet.RegistServlet.processPost(RegistServlet.java:44)
+ net.front.auth.servlet.RegistServlet.doPost(RegistServlet.java:31)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:648)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ net.common.util.filter.EncodingFilter.doFilter(EncodingFilter.java:45)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+ org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:94)
+ org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
+ org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+ org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+ org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:620)
+ org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+ org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:502)
+ org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1132)
+ org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:684)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1539)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1495)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+ java.lang.Thread.run(Unknown Source)
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+경고: The web application [ROOT] is still processing a request that has yet to finish. This is very likely to create a memory leak. You can control the time allowed for requests to finish by using the unloadDelay attribute of the standard Context implementation. Stack trace of request processing thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.park(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+ org.apache.commons.pool2.impl.LinkedBlockingDeque.takeFirst(LinkedBlockingDeque.java:583)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:442)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)
+ org.apache.commons.dbcp2.PoolingDriver.connect(PoolingDriver.java:129)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ net.common.util.dao.CommonDao.setConnection(CommonDao.java:40)
+ net.common.util.dao.CommonDao.<init>(CommonDao.java:29)
+ net.front.member.dao.MemberDaoImpl.insert(MemberDaoImpl.java:22)
+ net.front.auth.servlet.RegistServlet.processPost(RegistServlet.java:44)
+ net.front.auth.servlet.RegistServlet.doPost(RegistServlet.java:31)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:648)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ net.common.util.filter.EncodingFilter.doFilter(EncodingFilter.java:45)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+ org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:94)
+ org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
+ org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+ org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+ org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:620)
+ org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+ org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:502)
+ org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1132)
+ org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:684)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1539)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1495)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+ java.lang.Thread.run(Unknown Source)
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+경고: The web application [ROOT] is still processing a request that has yet to finish. This is very likely to create a memory leak. You can control the time allowed for requests to finish by using the unloadDelay attribute of the standard Context implementation. Stack trace of request processing thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.park(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+ org.apache.commons.pool2.impl.LinkedBlockingDeque.takeFirst(LinkedBlockingDeque.java:583)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:442)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)
+ org.apache.commons.dbcp2.PoolingDriver.connect(PoolingDriver.java:129)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ net.common.util.dao.CommonDao.setConnection(CommonDao.java:40)
+ net.common.util.dao.CommonDao.<init>(CommonDao.java:29)
+ net.front.member.dao.MemberDaoImpl.insert(MemberDaoImpl.java:22)
+ net.front.auth.servlet.RegistServlet.processPost(RegistServlet.java:44)
+ net.front.auth.servlet.RegistServlet.doPost(RegistServlet.java:31)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:648)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ net.common.util.filter.EncodingFilter.doFilter(EncodingFilter.java:45)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+ org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:94)
+ org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
+ org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+ org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+ org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:620)
+ org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+ org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:502)
+ org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1132)
+ org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:684)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1539)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1495)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+ java.lang.Thread.run(Unknown Source)
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+경고: The web application [ROOT] is still processing a request that has yet to finish. This is very likely to create a memory leak. You can control the time allowed for requests to finish by using the unloadDelay attribute of the standard Context implementation. Stack trace of request processing thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.park(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+ org.apache.commons.pool2.impl.LinkedBlockingDeque.takeFirst(LinkedBlockingDeque.java:583)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:442)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)
+ org.apache.commons.dbcp2.PoolingDriver.connect(PoolingDriver.java:129)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ net.common.util.dao.CommonDao.setConnection(CommonDao.java:40)
+ net.common.util.dao.CommonDao.<init>(CommonDao.java:29)
+ net.front.member.dao.MemberDaoImpl.login(MemberDaoImpl.java:15)
+ net.front.auth.servlet.LoginServlet.processPost(LoginServlet.java:44)
+ net.front.auth.servlet.LoginServlet.doPost(LoginServlet.java:33)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:648)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ net.common.util.filter.EncodingFilter.doFilter(EncodingFilter.java:45)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+ org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:94)
+ org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
+ org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+ org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+ org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:620)
+ org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+ org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:502)
+ org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1132)
+ org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:684)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1539)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1495)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+ java.lang.Thread.run(Unknown Source)
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+경고: The web application [ROOT] is still processing a request that has yet to finish. This is very likely to create a memory leak. You can control the time allowed for requests to finish by using the unloadDelay attribute of the standard Context implementation. Stack trace of request processing thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.park(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+ org.apache.commons.pool2.impl.LinkedBlockingDeque.takeFirst(LinkedBlockingDeque.java:583)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:442)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)
+ org.apache.commons.dbcp2.PoolingDriver.connect(PoolingDriver.java:129)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ net.common.util.dao.CommonDao.setConnection(CommonDao.java:40)
+ net.common.util.dao.CommonDao.<init>(CommonDao.java:29)
+ net.front.board.dao.BoardDaoImpl.selectOne(BoardDaoImpl.java:32)
+ net.front.board.servlet.BoardServlet.detail(BoardServlet.java:205)
+ net.front.board.servlet.BoardServlet.process(BoardServlet.java:135)
+ net.front.board.servlet.BoardServlet.doGet(BoardServlet.java:38)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ net.common.util.filter.EncodingFilter.doFilter(EncodingFilter.java:45)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+ org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:94)
+ org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
+ org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+ org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+ org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:620)
+ org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+ org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:502)
+ org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1132)
+ org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:684)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1539)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1495)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+ java.lang.Thread.run(Unknown Source)
+5월 24, 2018 3:33:56 오후 org.apache.catalina.loader.WebappClassLoaderBase clearReferencesThreads
+경고: The web application [ROOT] is still processing a request that has yet to finish. This is very likely to create a memory leak. You can control the time allowed for requests to finish by using the unloadDelay attribute of the standard Context implementation. Stack trace of request processing thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.park(Unknown Source)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+ org.apache.commons.pool2.impl.LinkedBlockingDeque.takeFirst(LinkedBlockingDeque.java:583)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:442)
+ org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)
+ org.apache.commons.dbcp2.PoolingDriver.connect(PoolingDriver.java:129)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ java.sql.DriverManager.getConnection(Unknown Source)
+ net.common.util.dao.CommonDao.setConnection(CommonDao.java:40)
+ net.common.util.dao.CommonDao.<init>(CommonDao.java:29)
+ net.front.boardComment.dao.BoardCommentDaoImpl.list(BoardCommentDaoImpl.java:17)
+ net.front.boardComment.servlet.BoardCommentAjaxServlet.list(BoardCommentAjaxServlet.java:98)
+ net.front.boardComment.servlet.BoardCommentAjaxServlet.process(BoardCommentAjaxServlet.java:64)
+ net.front.boardComment.servlet.BoardCommentAjaxServlet.doGet(BoardCommentAjaxServlet.java:34)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ net.common.util.filter.EncodingFilter.doFilter(EncodingFilter.java:45)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+ org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+ org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:94)
+ org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
+ org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+ org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+ org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:620)
+ org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+ org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:502)
+ org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1132)
+ org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:684)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1539)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1495)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+ java.lang.Thread.run(Unknown Source)
+5월 24, 2018 3:33:57 오후 org.apache.catalina.core.StandardContext reload
+심각: Exception starting Context with name []
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:162)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3868)
+	at org.apache.catalina.loader.WebappLoader.backgroundProcess(WebappLoader.java:290)
+	at org.apache.catalina.core.StandardContext.backgroundProcess(StandardContext.java:5670)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1381)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1381)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1349)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.NoClassDefFoundError: org/apache/commons/pool2/PooledObjectFactory
+	at java.lang.Class.getDeclaredFields0(Native Method)
+	at java.lang.Class.privateGetDeclaredFields(Unknown Source)
+	at java.lang.Class.getDeclaredFields(Unknown Source)
+	at org.apache.catalina.util.Introspection.getDeclaredFields(Introspection.java:106)
+	at org.apache.catalina.startup.WebAnnotationSet.loadFieldsAnnotation(WebAnnotationSet.java:256)
+	at org.apache.catalina.startup.WebAnnotationSet.loadApplicationListenerAnnotations(WebAnnotationSet.java:86)
+	at org.apache.catalina.startup.WebAnnotationSet.loadApplicationAnnotations(WebAnnotationSet.java:63)
+	at org.apache.catalina.startup.ContextConfig.applicationAnnotationsConfig(ContextConfig.java:336)
+	at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:786)
+	at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:307)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:95)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5212)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	... 8 more
+Caused by: java.lang.ClassNotFoundException: org.apache.commons.pool2.PooledObjectFactory
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1335)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1163)
+	... 22 more
+
+5월 24, 2018 3:33:57 오후 org.apache.catalina.core.StandardContext reload
+정보: Reloading Context with name [] is completed		

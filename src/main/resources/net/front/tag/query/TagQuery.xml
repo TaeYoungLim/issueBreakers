@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query>
+	<list>
+		select
+			tag_value tagValue
+			,count(tag_value) count
+		from 
+			tag
+		group by 
+			tag_value
+	</list>
+	<listByBoardId>
+		select
+			tag_id tagId
+			,tag_refference_id tagRefferenceId
+			,tag_value tagValue
+			,tag_type tagType
+		from 
+			tag
+		where
+			tag_refference_id = ${tagRefferenceId}
+			and tag_type = ${tagType}
+		order by 
+			tag_id asc 
+	</listByBoardId>
+	<selectOne>
+		select
+			tag_id tagId
+			,tag_refference_id tagRefferenceId
+			,tag_value tagValue
+			,tag_type tagType
+		from 
+			tag
+		where
+			tag_refference_id = ${tagRefferenceId}
+			and tag_type = ${tagType}
+			and rownum = 1
+	</selectOne>
+	<insert>
+		insert into tag
+		(
+		
+			tag_id
+			,tag_refference_id
+			,tag_value
+			,tag_type
+		)
+		values
+		(
+			seq_tag.nextval
+			,${tagRefferenceId}
+			,${tagValue}
+			,${tagType}
+		) 
+	</insert>
+	<update>
+		update 
+			tag 
+		set
+			tag_value = ${tagValue}
+		where
+			tag_refference_id = ${tagRefferenceId}
+			and tag_type = ${tagType}
+	</update>
+	<delete>
+		delete from 
+			tag 
+		where
+			tag_refference_id = ${tagRefferenceId}
+			and tag_type = ${tagType}
+	</delete>
+</query>

@@ -10,6 +10,8 @@ public class BoardCommentVo {
 	private int boardCommentWriter;
 	private String boardCommentDate;
 	
+	private String memberName;
+	
 	public BoardCommentVo() {
 		super();
 	}
@@ -65,5 +67,11 @@ public class BoardCommentVo {
 	}
 	public void setBoardCommentDate(String boardCommentDate) {
 		this.boardCommentDate = boardCommentDate;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 }

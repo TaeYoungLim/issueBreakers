@@ -10,38 +10,49 @@ public class BoardCommentDaoImpl implements BoardCommentDao {
 
 	private final String queryPath = "/net/front/boardComment/query/BoardCommentQuery.xml";
 	
+	private CommonDao commonDao;
+	
+	public BoardCommentDaoImpl() {
+		commonDao = CommonDao.getInstance();
+	}
+	
 	@Override
 	public ArrayList<Object> list(BoardCommentVo boardCommentVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get(queryPath + "/list");
-		return new CommonDao(query, boardCommentVo).getResult(BoardCommentVo.class.getName());
+		commonDao.setPreparedStatement(query, boardCommentVo);
+		return commonDao.getResult(BoardCommentVo.class.getName());
 	}
 
 	@Override
 	public ArrayList<Object> selectOne(BoardCommentVo boardCommentVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get(queryPath + "/selectOne");
-		return new CommonDao(query, boardCommentVo).getResult(BoardCommentVo.class.getName());
+		commonDao.setPreparedStatement(query, boardCommentVo);
+		return commonDao.getResult(BoardCommentVo.class.getName());
 	}
 	
 	@Override
 	public int insert(BoardCommentVo boardCommentVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get(queryPath + "/insert");
-		return new CommonDao(query, boardCommentVo).getResultUpdate();
+		commonDao.setPreparedStatement(query, boardCommentVo);
+		return commonDao.getResultUpdate();
 	}
 
 	@Override
 	public int update(BoardCommentVo boardCommentVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get(queryPath + "/update");
-		return new CommonDao(query, boardCommentVo).getResultUpdate();
+		commonDao.setPreparedStatement(query, boardCommentVo);
+		return commonDao.getResultUpdate();
 	}
 
 	@Override
 	public int delete(BoardCommentVo boardCommentVo) {
 		// TODO Auto-generated method stub
 		String query = QueryMakerListener._QueryMap.get(queryPath + "/delete");
-		return new CommonDao(query, boardCommentVo).getResultUpdate();
+		commonDao.setPreparedStatement(query, boardCommentVo);
+		return commonDao.getResultUpdate();
 	}
 }

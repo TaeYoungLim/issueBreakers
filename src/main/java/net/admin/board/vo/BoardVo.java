@@ -9,6 +9,12 @@ public class BoardVo extends PageVo {
 	private String boardContent;
 	private int boardWriter;
 	private String boardDate;
+	private int boardVote;
+	private String boardSelection;
+	private int boardSelectionCommentId;
+	
+	private String memberName;
+	private int commentCount; // 댓글 갯수
 	
 	public BoardVo() {}
 	
@@ -46,6 +52,21 @@ public class BoardVo extends PageVo {
 	public BoardVo(int boardId, String boardCategoryId) {
 		super();
 		this.boardId = boardId;
+		this.boardCategoryId = boardCategoryId;
+	}
+
+	public BoardVo(int boardId, String boardCategoryId, int boardSelectionCommentId, int boardWriter) {
+		super();
+		this.boardId = boardId;
+		this.boardCategoryId = boardCategoryId;
+		this.boardSelectionCommentId = boardSelectionCommentId;
+		this.boardWriter = boardWriter;
+	}
+	
+	
+	
+	public BoardVo(String boardCategoryId, int startRow, int endRow) {
+		super(startRow, endRow);
 		this.boardCategoryId = boardCategoryId;
 	}
 
@@ -95,5 +116,45 @@ public class BoardVo extends PageVo {
 
 	public void setBoardWriter(int boardWriter) {
 		this.boardWriter = boardWriter;
+	}
+
+	public String getBoardSelection() {
+		return boardSelection;
+	}
+
+	public void setBoardSelection(String boardSelection) {
+		this.boardSelection = boardSelection;
+	}
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+	public int getBoardVote() {
+		return boardVote;
+	}
+
+	public void setBoardVote(int boardVote) {
+		this.boardVote = boardVote;
+	}
+
+	public int getBoardSelectionCommentId() {
+		return boardSelectionCommentId;
+	}
+
+	public void setBoardSelectionCommentId(int boardSelectionCommentId) {
+		this.boardSelectionCommentId = boardSelectionCommentId;
+	}
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 }

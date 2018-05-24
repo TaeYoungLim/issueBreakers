@@ -5,18 +5,35 @@
 						select * from ( 
 										select 
 											rownum rnum
-											,board_id boardId
-											,board_category_id boardCategoryId
-											,board_title boardTitle
-											,board_content boardContent
-											,board_writer boardWriter
-											,board_date boardDate
+											,a.board_id boardId
+											,a.board_category_id boardCategoryId
+											,a.board_title boardTitle
+											,a.board_content boardContent
+											,a.board_writer boardWriter
+											,a.board_date boardDate
+											,a.board_vote boardVote
+											,a.board_selection boardSelection
+											,a.board_selection_comment_id boardSelectionCommentId
+											,(
+												select count(*) from board_comment
+												where 
+													board_id = a.board_id
+													and board_category_id = a.board_category_id
+											) commentCount
+											,(
+												select 
+													member_nick
+												from
+													member
+												where
+													member_id = a.board_writer
+											) memberName
 										from 
-											board
+											board a
 										where
-											board_category_id = ${boardCategoryId}
+											a.board_category_id = ${boardCategoryId}
 										order by 
-											board_id desc 
+											a.board_id desc 
 									) board 
 						where rnum &gt;= ${startRow} 
 					) 
@@ -38,6 +55,17 @@
 			,board_content boardContent
 			,board_writer boardWriter
 			,board_date boardDate
+			,board_vote boardVote
+			,board_selection boardSelection
+			,board_selection_comment_id boardSelectionCommentId
+			,(
+				select 
+					member_nick
+				from
+					member
+				where
+					member_id = board_writer
+			) memberName
 		from 
 			board
 		where
@@ -53,6 +81,9 @@
 			,board_content
 			,board_writer
 			,board_date
+			,board_vote
+			,board_selection
+			,board_selection_comment_id
 		)
 		values
 		(
@@ -62,6 +93,9 @@
 			,${boardContent}
 			,${boardWriter}
 			,TO_DATE(${boardDate},'YYYY-MM-DD HH24:mi:SS')
+			,0
+			,'N'
+			,0
 		) 
 	</insert>
 	<update>
@@ -82,4 +116,24 @@
 			and board_category_id = ${boardCategoryId}
 			and board_writer = ${boardWriter}
 	</delete>
+	<updateSelection>
+		update 
+			board 
+		set
+			board_selection = 'Y'
+			,board_selection_comment_id = ${boardSelectionCommentId}
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
+			and board_writer = ${boardWriter}
+	</updateSelection>
+	<updateVote>
+		update 
+			board 
+		set
+			board_vote = board_vote + 1
+		where
+			board_id = ${boardId}
+			and board_category_id = ${boardCategoryId}
+	</updateVote>
 </query>

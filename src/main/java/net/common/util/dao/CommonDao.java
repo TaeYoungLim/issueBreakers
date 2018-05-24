@@ -15,23 +15,30 @@ import java.util.regex.Pattern;
 
 public class CommonDao {
 	
-	public static final int TYPE_SELECT = 1;
-	public static final int TYPE_INSERT = 2;
-	public static final int TYPE_UPDATE = 3;
-	public static final int TYPE_DELETE = 4;
-	
 	protected Connection connection;
 	protected PreparedStatement preparedStatement;
 
-	public CommonDao(String sql, Object vo) {
+	private static CommonDao commonDao;
+	
+	private CommonDao() {
+		setConnection();
+	}
+	
+	public static CommonDao getInstance() {
+		if(commonDao == null) {
+			commonDao = new CommonDao();
+		}
+		
+		return commonDao;
+	}
+	
+	private void setConnection() {
 		try {
 			connection = DriverManager.getConnection("jdbc:apache:commons:dbcp:issueBreakers");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException("fail to get connection", e);
 		}
-		
-		setPreparedStatement(sql, vo);
 	}
 	
 	/**
@@ -48,8 +55,7 @@ public class CommonDao {
 	 * @param sql - String query
 	 * @param vo - Object valueObject
 	 */
-	protected void setPreparedStatement(String sql, Object vo) {
-		
+	public  void setPreparedStatement(String sql, Object vo, String getGeneratedKeyName) {
 		if(vo != null) {
 			ArrayList<String> parameterNames = new ArrayList<>();
 			String startLineSeparator = "${";
@@ -83,7 +89,11 @@ public class CommonDao {
 			
 			// set preparedStatement
 			try {
-				preparedStatement = connection.prepareStatement(tempSql);
+				// 생성키가 필요한 경우
+				if(getGeneratedKeyName != null && !getGeneratedKeyName.equals(""))
+					preparedStatement = connection.prepareStatement(tempSql, new String[]{getGeneratedKeyName});
+				else
+					preparedStatement = connection.prepareStatement(tempSql);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -162,6 +172,13 @@ public class CommonDao {
 		}
 	}
 	
+	public void setPreparedStatement(String sql, Object vo) {
+		setPreparedStatement(sql, vo, null);
+	}
+	
+	public void setPreparedStatement(String sql) {
+		setPreparedStatement(sql, null, null);
+	}
 	/**
 	 * getter, setter는 한개의 argument만 처리중이다.
 	 * 필요에따라 추가 할 예정 
@@ -268,6 +285,7 @@ public class CommonDao {
 	}
 	
 	/**
+	 * 처리 후 결과 count를 반환한다.
 	 * getter, setter는 한개의 argument만 처리중이다.
 	 * 필요에따라 추가 할 예정 
 	 * @return
@@ -278,6 +296,36 @@ public class CommonDao {
 		if(preparedStatement != null) {
 			try {
 				resultCount = preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return resultCount;
+	}
+	
+	/**
+	 * 처리 후 추가적으로 생성된 키를 반환한다.
+	 * getter, setter는 한개의 argument만 처리중이다.
+	 * 필요에따라 추가 할 예정 
+	 * @return
+	 */
+	public int getResultUpdateForKey() {
+		int resultCount = -1;
+		
+		if(preparedStatement != null) {
+			try {
+				resultCount = preparedStatement.executeUpdate();
+				
+				if(resultCount <= 0)
+					return -1;
+				
+				ResultSet resultSet =  preparedStatement.getGeneratedKeys();
+				
+				while(resultSet.next()) {
+					return resultSet.getInt(1); 
+			    }
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

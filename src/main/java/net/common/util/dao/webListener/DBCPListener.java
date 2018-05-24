@@ -50,14 +50,15 @@ public class DBCPListener implements ServletContextListener {
 		}
 	}
 	
-    public void contextDestroyed(ServletContextEvent sce)  {}
+    public void contextDestroyed(ServletContextEvent sce)  {
+		// TODO Auto-generated method stub
+    }
 	
 	private void initConnectionPool(Properties properties) {
 		url = properties.getProperty("url");
 		username = properties.getProperty("username");
 		password = properties.getProperty("password");
 		poolName = properties.getProperty("poolname");
-		
 		
 		try {
 			// A ConnectionFactory that the pool will use to create Connections.
@@ -72,23 +73,23 @@ public class DBCPListener implements ServletContextListener {
 			GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
 			genericObjectPoolConfig.setTimeBetweenEvictionRunsMillis(1000L * 60L * 5L);
 			genericObjectPoolConfig.setTestWhileIdle(true);
-			genericObjectPoolConfig.setMinIdle(4);
-			genericObjectPoolConfig.setMaxTotal(50);
+			genericObjectPoolConfig.setMinIdle(1000);
+			genericObjectPoolConfig.setMaxTotal(1500);
 
 			// Actual pool of connections.
 			GenericObjectPool<PoolableConnection> connectionPool = new GenericObjectPool<>(poolableConnectionFactory,
 					genericObjectPoolConfig);
 
+			// Set the factory's pool property to the owning pool.
+			poolableConnectionFactory.setPool(connectionPool);
+			
 			Class.forName("org.apache.commons.dbcp2.PoolingDriver");
 
 			PoolingDriver driver = (PoolingDriver) DriverManager.getDriver("jdbc:apache:commons:dbcp:");
 			driver.registerPool(poolName, connectionPool);
-			
-			// Set the factory's pool property to the owning pool.
-			poolableConnectionFactory.setPool(connectionPool);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		}
 	}
 }

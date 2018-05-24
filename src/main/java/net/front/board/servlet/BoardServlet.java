@@ -13,11 +13,19 @@ import net.common.util.servlet.HttpServletManager;
 import net.front.board.dao.BoardDao;
 import net.front.board.dao.BoardDaoImpl;
 import net.front.member.vo.MemberVo;
+import net.front.tag.dao.TagDao;
+import net.front.tag.dao.TagDaoImpl;
+import net.front.tag.vo.TagVo;
 
+/**
+ * @author Administrator
+ * 게시판 관련 서블릿
+ */
 @WebServlet(urlPatterns = {"/front/board/*"})
 public class BoardServlet extends HttpServletManager {
 
 	private BoardDao boardDao = new BoardDaoImpl();
+	private TagDao tagDao = new TagDaoImpl();
 	
 	/**
 	 * 
@@ -48,18 +56,20 @@ public class BoardServlet extends HttpServletManager {
 		MemberVo memberVo = (MemberVo) request.getSession().getAttribute("memberVo");
 		
 		switch (path) {
-			case "/list":
+			case "/list": // 목록
 				list(request, response);
 				break;
 				
-			case "/regist":
+			case "/regist": // 등록
 				if(type.equals("post")) {
 					if(memberVo == null) {
 						response.sendRedirect("/front/auth/login.do");
 						return;
 					}
-						
-					if(regist(request, response, memberVo) > 0) {
+					// 게시글 등록
+					int result = regist(request, response, memberVo);
+					
+					if(result > 0) {
 						response.sendRedirect("/front/board/list.do?boardCategoryId=" + boardCategoryId);
 						return;
 					} else {
@@ -70,7 +80,7 @@ public class BoardServlet extends HttpServletManager {
 				
 				break;
 				
-			case "/update":
+			case "/update": // 수정
 				if(type.equals("post")) {
 					if(memberVo == null) {
 						response.sendRedirect("/front/auth/login.do");
@@ -112,7 +122,7 @@ public class BoardServlet extends HttpServletManager {
 				
 				break;
 			
-			case "/detail":
+			case "/detail": // 상세
 				String boardId = request.getParameter("boardId");
 				
 				if(boardId == null || boardId.equals("")) {
@@ -125,7 +135,7 @@ public class BoardServlet extends HttpServletManager {
 				detail(request, response, boardParameterVo);
 				break;	
 				
-			case "/delete":
+			case "/delete": // 삭제
 				if(memberVo == null) {
 					response.sendRedirect("/front/auth/login.do");
 					return;
@@ -170,6 +180,11 @@ public class BoardServlet extends HttpServletManager {
 		
 		int listCount = boardDao.listCount(boardParameterVo);
 		
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum != null) {
+			boardParameterVo.setPageNum(Integer.parseInt(pageNum));
+		}
+		
 		boardParameterVo.setCount(listCount);
 		boardParameterVo.setPageData();
 		
@@ -186,8 +201,24 @@ public class BoardServlet extends HttpServletManager {
 	 * @return
 	 */
 	private void detail(HttpServletRequest request, HttpServletResponse response, BoardVo boardParameterVo) {
+		// 게시글 조회
 		List<Object> boardVoList = boardDao.selectOne(boardParameterVo);
 		request.setAttribute("boardVoList", boardVoList);
+		
+		BoardVo boardVo = null;
+		
+		for(Object object : boardVoList) {
+			boardVo = (BoardVo) object;
+		}
+		
+		if(boardVo != null) {
+			TagVo tagVo = new TagVo(boardVo.getBoardId(), "2");
+			
+			// 태그 조회
+			List<Object> tagVoList = tagDao.listByBoardId(tagVo);
+			
+			request.setAttribute("tagVoList", tagVoList);
+		}
 	}
 	
 	/**
@@ -205,7 +236,28 @@ public class BoardServlet extends HttpServletManager {
 		
 		int result = -1;
 		
+		/*****************************************************
+		 * 등록된 게시글의 generateId를 반환한다. 
+		 ***************************************************/
+		// 게시글 등록
 		result = boardDao.insert(boardParameterVo);
+
+		if(result > 0) { // 게시글이 정상적으로 등록된 경우
+			String [] tags = request.getParameterValues("tag");
+			
+			if(tags != null && tags.length > 0){ // 파라메터에 태그가 있는경우
+				TagVo tagVo = new TagVo();
+				tagVo.setTagRefferenceId(result);
+				tagVo.setTagType("2");
+				
+				for(String string : tags) {
+					tagVo.setTagValue(string);
+					 
+					// 태그 등록
+					tagDao.insert(tagVo);
+				}
+			}
+		}
 		
 		return result;
 	}
@@ -220,6 +272,23 @@ public class BoardServlet extends HttpServletManager {
 		int result = -1;
 		
 		result = boardDao.update(boardParameterVo);
+		
+		if(result > 0) { // 게시글이 정상적으로 등록된 경우
+			String [] tags = request.getParameterValues("tag");
+			
+			TagVo tagVo = new TagVo();
+			tagVo.setTagRefferenceId(boardParameterVo.getBoardId());
+			tagVo.setTagType("2");
+
+			tagDao.delete(tagVo);
+			
+			for(String string : tags) {
+				tagVo.setTagValue(string);
+				 
+				// 태그 등록
+				tagDao.insert(tagVo);
+			}
+		}
 		
 		return result;
 	}
