@@ -187,51 +187,69 @@
 	</listCountByWriter>	
 	<listSearch>
 		select * from (
-						select * from ( 
+						select * from ( 	
 										select 
 											rownum rnum
-											,a.board_id boardId
-											,a.board_category_id boardCategoryId
-											,a.board_title boardTitle
-											,a.board_content boardContent
-											,a.board_writer boardWriter
-											,a.board_date boardDate
-											,a.board_vote boardVote
-											,a.board_selection boardSelection
-											,a.board_selection_comment_id boardSelectionCommentId
-											,(
-												select count(*) from board_comment
-												where 
-													board_id = a.board_id
-													and board_category_id = a.board_category_id
-											) commentCount
-											,(
-												select 
-													member_nick
-												from
-													member
-												where
-													member_id = a.board_writer
-											) memberName
+											,f.board_id as boardId
+											,f.board_title as boardTitle
+											,f.board_category_id as boardCategoryId
+											,b.tag as tag
 										from 
-											board a
+											board f
+										full outer join (
+																select 
+																	d.board_id
+																	,d.board_category_id 
+																	,d.board_title 
+																	,c.tag
+																from 
+																	board d inner join ( 
+																					select tag_refference_id, tag_value tag from tag
+																					where 
+																					tag_value like '%' || ${searchWord} || '%'
+																				) c 
+																	on d.board_id = c.tag_refference_id
+													   	) b
+										on f.board_id = b.board_id
 										where
-											a.board_title like '%' || ${searchWord} || '%'
-											or a.board_content like '%' || ${searchWord} || '%'
-										order by 
-											a.board_id desc 
+											f.board_title like '%' || ${searchWord} || '%'
+											or f.board_content like '%' || ${searchWord} || '%'
+											or b.tag like '%' || ${searchWord} || '%'
 									) board 
 						where rnum &gt;= ${startRow} 
 					) 
 		where rnum &lt;= ${endRow}
 	</listSearch>
 	<listCountSearch>
-		select 
-			count(*) count  
-		from 
-			board
-		where
-			board_title like '%' || ${searchWord} || '%'
-			or board_content like '%' || ${searchWord} || '%'
+		select count(*) count from ( 	
+					select 
+						rownum rnum
+						,f.board_id
+						,f.board_title
+						,f.board_category_id 
+						,f.board_title 
+						,b.tag
+					from 
+						board f
+					full outer join (
+											select 
+												d.board_id
+												,d.board_category_id 
+												,d.board_title 
+												,c.tag
+											from 
+												board d inner join ( 
+																select tag_refference_id, tag_value tag from tag
+																where 
+																tag_value like '%' || ${searchWord} || '%'
+															) c 
+												on d.board_id = c.tag_refference_id
+								   	) b
+					on f.board_id = b.board_id
+					where
+						f.board_title like '%' || ${searchWord} || '%'
+						or f.board_content like '%' || ${searchWord} || '%'
+						or b.tag like '%' || ${searchWord} || '%'
+				) board
 	</listCountSearch>
 </query>

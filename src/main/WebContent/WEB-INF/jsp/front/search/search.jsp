@@ -24,6 +24,7 @@
 								<td>${result.boardTitle}</td>
 								<td class="text-center">${result.commentCount}</td>
 								<td class="text-center">${result.boardCategoryId}</td>
+								<td class="text-center">${result.tag}</td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -48,7 +49,7 @@
 		// 페이지 번호
 		$(".pageMove").click(function() {
 			if (!$(this).hasClass("on")) { 
-				location.href = "/front/board/list.do?boardCategoryId=${requestScope.boardCategoryId}&pageNum=" + $(this).attr("data-page-no");
+				location.href = "/front/search/search.do?searchWord=${requestScope.boardParameterVo.searchWord}&pageNum=" + $(this).attr("data-page-no");
 			}
 		});
 	</script>
