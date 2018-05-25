@@ -7,6 +7,11 @@
 	<context-param>
 		<param-name>poolConfig</param-name>
 		<param-value>
+			driver=
+			url=
+			username=
+			password=
+			poolname=issueBreakers
 		</param-value>
 	</context-param>
 	
