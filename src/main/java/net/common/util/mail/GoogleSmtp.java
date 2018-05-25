@@ -11,8 +11,8 @@ import javax.mail.internet.MimeMessage;
 
 public class GoogleSmtp implements Mail {
 
-	final String username = "issuebreakers@gmail.com";
-	final String password = "issue123";
+	final String username = "asdasd";
+	final String password = "asdasd";
 
 	public void send(String toAddress, String subject, String msg) {
 
